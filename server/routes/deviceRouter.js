@@ -1,10 +1,10 @@
 const Router = require("express");
 const router = new Router();
 const DeviceController = require("../controllers/DeviceController");
-
-router.post("/", DeviceController.create);
+const checkRole = require("../middleware/checkRoleMiddleware");
+router.post("/", checkRole("Admin"), DeviceController.create);
 router.get("/", DeviceController.getAll);
 router.get("/:id", DeviceController.getOne);
-router.delete("/:id", DeviceController.deleteOne);
+router.delete("/:id", checkRole("Admin"), DeviceController.deleteOne);
 
 module.exports = router;
