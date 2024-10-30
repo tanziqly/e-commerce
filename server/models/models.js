@@ -51,10 +51,6 @@ const Device = sequelize.define("device", {
     type: DataTypes.INTEGER,
     allowNull: false,
   },
-  rating: {
-    type: DataTypes.INTEGER,
-    defaultValue: 0,
-  },
   img: {
     type: DataTypes.STRING,
     allowNull: false,
@@ -83,18 +79,6 @@ const Brand = sequelize.define("brand", {
   name: {
     type: DataTypes.STRING,
     unique: true,
-    allowNull: false,
-  },
-});
-
-const Rating = sequelize.define("rating", {
-  id: {
-    type: DataTypes.INTEGER,
-    primaryKey: true,
-    autoIncrement: true,
-  },
-  rate: {
-    type: DataTypes.INTEGER,
     allowNull: false,
   },
 });
@@ -138,9 +122,6 @@ Device.belongsTo(Type);
 Brand.hasMany(Device);
 Device.belongsTo(Brand);
 
-Device.hasMany(Rating);
-Rating.belongsTo(Device);
-
 Device.hasOne(BasketDevice);
 BasketDevice.belongsTo(Device);
 
@@ -153,7 +134,6 @@ Type.belongsToMany(Brand, { through: TypeBrand });
 module.exports = {
   User,
   Basket,
-  Rating,
   BasketDevice,
   Device,
   Type,
