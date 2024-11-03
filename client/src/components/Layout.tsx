@@ -7,7 +7,9 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
       <header>
         <Header />
       </header>
-      <main className="flex-1 flex w-full">{children}</main>
+      <main className="flex-1 flex justify-center">
+        <div className="flex-1 flex w-full max-w-[1440px]">{children}</div>
+      </main>
       <footer>
         <Footer />
       </footer>

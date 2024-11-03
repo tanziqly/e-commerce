@@ -1,3 +1,16 @@
 export const Footer = () => {
-  return <div>Footer</div>;
+  return (
+    <div className="flex justify-between items-center border-t py-2 px-5 text-neutral-600">
+      <span>Tanziqly's Shop</span>
+      <div className="flex gap-1 items-center">
+        Made by
+        <a
+          className="underline text-primary"
+          href="https://github.com/tanziqly"
+        >
+          tanziqly
+        </a>
+      </div>
+    </div>
+  );
 };
