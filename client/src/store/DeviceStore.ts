@@ -21,16 +21,26 @@ export default class DeviceStore {
   private _types: IType[] = [];
   private _brands: IBrand[] = [];
   private _devices: IDevice[] = [];
+  private _selectedType: IType = { id: 0, name: "" };
+  private _selectedBrand: IType = { id: 0, name: "" };
 
   constructor() {
     this._types = [
-      { id: 1, name: "type1" },
-      { id: 2, name: "type2" },
+      { id: 1, name: "Холодильники" },
+      { id: 2, name: "Телефоны" },
+      { id: 3, name: "Стиральные машины" },
+      { id: 4, name: "Ноутбуки" },
+      { id: 5, name: "Планшеты" },
+      { id: 6, name: "Компьютеры" },
     ];
 
     this._brands = [
-      { id: 1, name: "brand1" },
-      { id: 2, name: "brand2" },
+      { id: 1, name: "Xiaomi" },
+      { id: 2, name: "Samsung" },
+      { id: 3, name: "LG" },
+      { id: 4, name: "Apple" },
+      { id: 5, name: "Huawei" },
+      { id: 6, name: "Honor" },
     ];
 
     this._devices = [
@@ -48,6 +58,9 @@ export default class DeviceStore {
       },
     ];
 
+    this._selectedType = { id: 0, name: "" };
+    this._selectedBrand = { id: 0, name: "" };
+
     makeAutoObservable(this);
   }
   setTypes(types: IType[]) {
@@ -59,7 +72,13 @@ export default class DeviceStore {
   setDevices(devices: IDevice[]) {
     this._devices = devices;
   }
+  setSelectedType(type: IType) {
+    this._selectedType = type;
+  }
 
+  setSelectedBrand(brand: IBrand) {
+    this._selectedBrand = brand;
+  }
   get types() {
     return this._types;
   }
@@ -70,5 +89,13 @@ export default class DeviceStore {
 
   get devices() {
     return this._devices;
+  }
+
+  get selectedType() {
+    return this._selectedType;
+  }
+
+  get selectedBrand() {
+    return this._selectedBrand;
   }
 }

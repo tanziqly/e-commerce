@@ -12,7 +12,7 @@ export const Header = observer(() => {
   const { user } = useContext(Context);
 
   return (
-    <div className="flex py-2 px-5 border-b w-full justify-center">
+    <div className="flex py-2 px-5 max-w-[1480px] w-full justify-center">
       <div className="flex justify-between items-center w-full">
         <Link className="text-lg font-bold" to={HOME_ROUTE}>
           Tanziqly's Shop

@@ -1,6 +1,6 @@
 export const Footer = () => {
   return (
-    <div className="flex justify-between items-center border-t py-2 px-5 text-neutral-600">
+    <div className="flex justify-between items-center max-w-[1480px] w-full py-2 px-5 text-neutral-600">
       <span>Tanziqly's Shop</span>
       <div className="flex gap-1 items-center">
         Made by
