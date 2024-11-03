@@ -56,6 +56,36 @@ export default class DeviceStore {
         price: 1000,
         img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXrmbEEUOzvUm5sSXoEL0gjmTUutwQSDqKpg&s",
       },
+      {
+        id: 3,
+        name: "device2",
+        price: 1000,
+        img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXrmbEEUOzvUm5sSXoEL0gjmTUutwQSDqKpg&s",
+      },
+      {
+        id: 4,
+        name: "device2",
+        price: 1000,
+        img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXrmbEEUOzvUm5sSXoEL0gjmTUutwQSDqKpg&s",
+      },
+      {
+        id: 5,
+        name: "device2",
+        price: 1000,
+        img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXrmbEEUOzvUm5sSXoEL0gjmTUutwQSDqKpg&s",
+      },
+      {
+        id: 6,
+        name: "device2",
+        price: 1000,
+        img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXrmbEEUOzvUm5sSXoEL0gjmTUutwQSDqKpg&s",
+      },
+      {
+        id: 7,
+        name: "device2",
+        price: 1000,
+        img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXrmbEEUOzvUm5sSXoEL0gjmTUutwQSDqKpg&s",
+      },
     ];
 
     this._selectedType = { id: 0, name: "" };
