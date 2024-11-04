@@ -4,7 +4,7 @@ import { Header } from "./Header";
 export const Layout = ({ children }: { children: React.ReactNode }) => {
   return (
     <div className="flex flex-col min-h-screen">
-      <header className="border-b w-full flex justify-center">
+      <header className="sticky top-0 bg-background/50 backdrop-blur-xl supports-[backdrop-filter]:bg-background/60 z-50 border-b w-full flex justify-center">
         <Header />
       </header>
       <main className="flex-1 flex justify-center">

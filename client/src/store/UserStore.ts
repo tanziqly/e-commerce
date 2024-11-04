@@ -11,7 +11,7 @@ export default class UserStore {
   private _user: User = {};
 
   constructor() {
-    this._isAuth = false;
+    this._isAuth = true;
     this._user = {};
     makeAutoObservable(this);
   }
