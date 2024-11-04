@@ -1,7 +1,12 @@
-import { HOME_ROUTE, LOGIN_ROUTE, REGISTRATION_ROUTE } from "@/lib/constants";
+import {
+  HOME_ROUTE,
+  LOGIN_ROUTE,
+  ADMIN_ROUTE,
+  REGISTRATION_ROUTE,
+} from "@/lib/constants";
 
 import { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Context } from "@/main";
 
 import { observer } from "mobx-react-lite";
@@ -10,6 +15,7 @@ import { Button, buttonVariants } from "./ui/button";
 
 export const Header = observer(() => {
   const { user } = useContext(Context);
+  const navigate = useNavigate();
 
   return (
     <div className="flex py-2 px-5 max-w-[1480px] w-full justify-center">
@@ -20,8 +26,15 @@ export const Header = observer(() => {
         <div className="flex gap-2">
           {user.isAuth ? (
             <>
-              <Button variant="outline">I'm Admin</Button>
-              <Button variant="destructive">Log out</Button>
+              <Button variant="outline" onClick={() => navigate(ADMIN_ROUTE)}>
+                I'm Admin
+              </Button>
+              <Button
+                variant="destructive"
+                onClick={() => navigate(LOGIN_ROUTE)}
+              >
+                Log out
+              </Button>
             </>
           ) : (
             <>
