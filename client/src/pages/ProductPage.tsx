@@ -2,8 +2,10 @@
 // import { useContext } from "react";
 // import { Context } from "@/main";
 
-import { Button } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
+import { HOME_ROUTE } from "@/lib/constants";
 import { ShoppingCart } from "lucide-react";
+import { Link } from "react-router-dom";
 
 export const ProductPage = () => {
   // const { device } = useContext(Context);
@@ -22,8 +24,18 @@ export const ProductPage = () => {
     { id: 5, title: "Storage", value: "512 GB" },
     { id: 6, title: "Battery", value: "4851 mAh" },
   ];
+
   return (
-    <div className="flex justify-center w-full">
+    <div className="flex relative justify-start w-full">
+      <Link
+        to={HOME_ROUTE}
+        className={`${buttonVariants({
+          variant: "outline",
+        })} mt-2 left-16 absolute`}
+      >
+        Back to home
+      </Link>
+
       <div className="flex gap-20 p-16">
         <img
           src={device.img}
