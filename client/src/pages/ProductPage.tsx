@@ -26,7 +26,7 @@ export const ProductPage = () => {
   ];
 
   return (
-    <div className="flex relative justify-start w-full">
+    <div className="flex relative justify-center w-full">
       <Link
         to={HOME_ROUTE}
         className={`${buttonVariants({
@@ -36,7 +36,7 @@ export const ProductPage = () => {
         Back to home
       </Link>
 
-      <div className="flex gap-20 p-16">
+      <div className="flex md:flex-row flex-col md:gap-20 gap-4 p-16">
         <img
           src={device.img}
           className="w-96 h-96 object-cover rounded-md border border-neutral-400"
@@ -52,7 +52,7 @@ export const ProductPage = () => {
             Add to cart
           </Button>
           <div>
-            <h3 className="text-lg font-medium">Характеристики:</h3>
+            <h3 className="text-lg font-medium">Characteristics:</h3>
             <div>
               {description.map((item) => (
                 <ul key={item.id}>
