@@ -8,7 +8,7 @@ export const BrandSidebar = observer(() => {
   const { device } = useContext(Context);
 
   return (
-    <SidebarWrapper category="Бренд">
+    <SidebarWrapper category="Brand">
       {device.brands.map((brand) => (
         <li key={brand.id}>
           <Button

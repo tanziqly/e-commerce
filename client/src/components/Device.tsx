@@ -1,8 +1,9 @@
 import { Button } from "./ui/button";
-import { ShoppingCart } from "lucide-react";
+import { ShoppingCart, Trash2 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { PRODUCT_ROUTE } from "@/lib/constants";
 interface DeviceListProps {
+  isBasket?: boolean;
   DeviceImg: string;
   DeviceName: string;
   DevicePrice: number;
@@ -10,6 +11,7 @@ interface DeviceListProps {
 }
 
 export const Device = ({
+  isBasket,
   DeviceImg,
   DeviceName,
   DevicePrice,
@@ -18,10 +20,10 @@ export const Device = ({
   const navigate = useNavigate();
 
   return (
-    <div className="flex h-fit flex-col border rounded-xl p-2">
+    <div className="flex h-fit w-fit flex-col border rounded-xl p-2">
       <img
         src={DeviceImg}
-        className="rounded-lg border object-cover h-[250px]"
+        className="rounded-lg border object-cover max-w-[250px] w-full h-[250px]"
         alt=""
       />
       <div className="my-2">
@@ -35,9 +37,15 @@ export const Device = ({
         >
           More details
         </Button>
-        <Button size="icon" variant="outline">
-          <ShoppingCart />
-        </Button>
+        {!isBasket ? (
+          <Button size="icon" variant="outline">
+            <ShoppingCart />
+          </Button>
+        ) : (
+          <Button size="icon" variant="destructive">
+            <Trash2 />
+          </Button>
+        )}
       </div>
     </div>
   );
