@@ -109,6 +109,12 @@ export default class DeviceStore {
   setSelectedBrand(brand: IBrand) {
     this._selectedBrand = brand;
   }
+
+  resetFilters() {
+    this._selectedType = { id: 0, name: "" };
+    this._selectedBrand = { id: 0, name: "" };
+  }
+
   get types() {
     return this._types;
   }
