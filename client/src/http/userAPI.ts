@@ -7,8 +7,8 @@ export const registration = async (email: string, password: string) => {
     password,
     role: "ADMIN",
   });
-  localStorage.setItem("token", data.token);
   const token = String(data);
+  localStorage.setItem("token", token);
   return jwtDecode(token);
 };
 
@@ -17,14 +17,14 @@ export const login = async (email: string, password: string) => {
     email,
     password,
   });
-  localStorage.setItem("token", data.token);
   const token = String(data);
+  localStorage.setItem("token", token);
   return jwtDecode(token);
 };
 
 export const check = async () => {
   const { data } = await $authHost.get("api/user/auth");
-  localStorage.setItem("token", data.token);
   const token = String(data);
+  localStorage.setItem("token", token);
   return jwtDecode(token);
 };

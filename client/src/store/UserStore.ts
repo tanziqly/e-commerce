@@ -1,4 +1,4 @@
-import { makeAutoObservable } from "mobx";
+import { makeAutoObservable, action } from "mobx";
 
 interface User {
   id?: number;
@@ -13,7 +13,10 @@ export default class UserStore {
   constructor() {
     this._isAuth = false;
     this._user = {};
-    makeAutoObservable(this);
+    makeAutoObservable(this, {
+      setIsAuth: action,
+      setUser: action,
+    });
   }
 
   setIsAuth(bool: boolean) {
