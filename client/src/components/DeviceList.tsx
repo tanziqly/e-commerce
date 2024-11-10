@@ -12,7 +12,7 @@ export const DeviceList = observer(() => {
         <Device
           key={device.id}
           id={device.id}
-          DeviceImg={device.img}
+          DeviceImg={import.meta.env.VITE_API_URL + device.img}
           DeviceName={device.name}
           DevicePrice={device.price}
         />

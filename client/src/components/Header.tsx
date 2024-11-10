@@ -17,6 +17,12 @@ export const Header = observer(() => {
   const { user } = useContext(Context);
   const navigate = useNavigate();
 
+  const logout = () => {
+    user.setUser({});
+    user.setIsAuth(false);
+    localStorage.removeItem("token");
+  };
+
   return (
     <div className="flex py-2 px-5 max-w-[1480px] w-full justify-center">
       <div className="flex justify-between items-center w-full">
@@ -29,10 +35,7 @@ export const Header = observer(() => {
               <Button variant="outline" onClick={() => navigate(ADMIN_ROUTE)}>
                 I'm Admin
               </Button>
-              <Button
-                variant="destructive"
-                onClick={() => navigate(LOGIN_ROUTE)}
-              >
+              <Button variant="destructive" onClick={logout}>
                 Log out
               </Button>
             </>
