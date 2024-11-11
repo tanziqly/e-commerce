@@ -9,8 +9,18 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { createBrand } from "@/http/DeviceAPI";
+import { useState } from "react";
 
 export function BrandModal() {
+  const [value, setValue] = useState("");
+
+  const addBrand = () => {
+    createBrand({ name: value }).then((data) => {
+      setValue("");
+    });
+  };
+
   return (
     <Dialog>
       <DialogTrigger asChild>
@@ -28,13 +38,14 @@ export function BrandModal() {
             <Input
               id="brand"
               placeholder="write Something"
-              value={""}
+              value={value}
+              onChange={(e) => setValue(e.target.value)}
               className="col-span-3"
             />
           </div>
         </div>
         <DialogFooter>
-          <Button type="submit" variant={"outline"}>
+          <Button onClick={addBrand} type="submit" variant={"outline"}>
             Add
           </Button>
         </DialogFooter>

@@ -3,27 +3,23 @@
 // import { Context } from "@/main";
 
 import { Button, buttonVariants } from "@/components/ui/button";
+import { fetchOneDevice } from "@/http/DeviceAPI";
 import { HOME_ROUTE } from "@/lib/constants";
 import { ShoppingCart } from "lucide-react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 export const ProductPage = () => {
   // const { device } = useContext(Context);
-  const device = {
-    id: 1,
-    name: "Iphone 17 pro max plus",
-    price: 170000,
-    img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXrmbEEUOzvUm5sSXoEL0gjmTUutwQSDqKpg&s",
-  };
-
-  const description = [
-    { id: 1, title: "OS", value: "IOS" },
-    { id: 2, title: "Display", value: "6.1 inches" },
-    { id: 3, title: "CPU", value: "A17 Bionic chip" },
-    { id: 4, title: "RAM", value: "8 GB" },
-    { id: 5, title: "Storage", value: "512 GB" },
-    { id: 6, title: "Battery", value: "4851 mAh" },
-  ];
+  const [device, setDevice] = useState({ info: [] });
+  const params = useParams();
+  console.log(params);
+  useEffect(() => {
+    fetchOneDevice(Number(params.id)).then((data) => {
+      setDevice(data);
+    });
+  }, [params.id]);
 
   return (
     <div className="flex relative justify-center w-full">
@@ -38,7 +34,7 @@ export const ProductPage = () => {
 
       <div className="flex md:flex-row flex-col md:gap-20 gap-4 p-16">
         <img
-          src={device.img}
+          src={import.meta.env.VITE_API_URL + device.img}
           className="w-96 h-96 object-cover rounded-md border border-neutral-400"
           alt=""
         />
@@ -54,7 +50,7 @@ export const ProductPage = () => {
           <div>
             <h3 className="text-lg font-medium">Characteristics:</h3>
             <div>
-              {description.map((item) => (
+              {device.info.map((item) => (
                 <ul key={item.id}>
                   <li className="flex mb-1  text-base text-neutral-500 gap-1 font-medium">
                     {item.title}:

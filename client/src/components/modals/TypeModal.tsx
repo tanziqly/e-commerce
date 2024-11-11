@@ -9,8 +9,18 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { createType } from "@/http/DeviceAPI";
+import { useState } from "react";
 
 export function TypeModal() {
+  const [value, setValue] = useState("");
+
+  const addType = () => {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    createType({ name: value }).then((data) => {
+      setValue("");
+    });
+  };
   return (
     <Dialog>
       <DialogTrigger asChild>
@@ -28,13 +38,14 @@ export function TypeModal() {
             <Input
               id="type"
               placeholder="write Something"
-              value={""}
+              value={value}
+              onChange={(e) => setValue(e.target.value)}
               className="col-span-3"
             />
           </div>
         </div>
         <DialogFooter>
-          <Button type="submit" variant={"outline"}>
+          <Button type="submit" onClick={addType} variant={"outline"}>
             Add
           </Button>
         </DialogFooter>
