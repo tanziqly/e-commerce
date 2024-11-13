@@ -6,19 +6,21 @@ import { createContext } from "react";
 import UserStore from "./store/UserStore.ts";
 import DeviceStore from "./store/DeviceStore.ts";
 
-console.log(import.meta.env.VITE_API_URL);
+const userStore = new UserStore();
+const deviceStore = new DeviceStore();
 
 export const Context = createContext<{ user: UserStore; device: DeviceStore }>({
-  user: new UserStore(),
-  device: new DeviceStore(),
+  user: userStore,
+  device: deviceStore,
 });
 
-createRoot(document.getElementById("root")!).render(
+const root = createRoot(document.getElementById("root")!);
+root.render(
   <StrictMode>
     <Context.Provider
       value={{
-        user: new UserStore(),
-        device: new DeviceStore(),
+        user: userStore,
+        device: deviceStore,
       }}
     >
       <App />

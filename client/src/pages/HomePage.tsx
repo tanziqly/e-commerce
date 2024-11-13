@@ -23,9 +23,6 @@ export const HomePage = observer(() => {
     fetchDevices().then((data) => {
       device.setDevices(data);
     });
-    // fetchOneDevice(1).then((data) => {
-    //   device.setDevices(data);
-    // });
   }, [device]);
 
   return (
