@@ -8,10 +8,10 @@ interface User {
 
 export default class UserStore {
   private _isAuth: boolean;
-  private _user: any;
+  private _user: User;
 
   constructor() {
-    this._isAuth = !!localStorage.getItem("token");
+    this._isAuth = false;
     this._user = {};
     makeAutoObservable(this);
   }
@@ -23,7 +23,7 @@ export default class UserStore {
     }
   }
 
-  setUser(user: any) {
+  setUser(user: User) {
     this._user = user;
   }
 
@@ -35,3 +35,5 @@ export default class UserStore {
     return this._user;
   }
 }
+
+// example1@email.com

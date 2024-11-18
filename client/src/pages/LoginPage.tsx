@@ -18,13 +18,13 @@ export const LoginPage = observer(() => {
     try {
       const data = await login(email, password);
       console.log(data);
+      user.setUser(data);
+      user.setIsAuth(true);
       navigate(HOME_ROUTE);
     } catch (e: any) {
       alert(e.response?.data?.message || "Произошла ошибка");
     }
   };
-
-  user.setIsAuth(true);
 
   return (
     <div className="w-full relative flex flex-1">
