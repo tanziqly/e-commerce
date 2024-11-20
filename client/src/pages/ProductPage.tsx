@@ -56,7 +56,7 @@ export const ProductPage = () => {
       <div className="flex md:flex-row flex-col md:gap-20 gap-4 p-16">
         <img
           src={import.meta.env.VITE_API_URL + device.img}
-          className="w-96 h-96 object-cover rounded-md border border-neutral-400"
+          className="w-96 h-96 object-contain rounded-md border border-neutral-400"
           alt=""
         />
         <div className="pt-3 flex gap-6 flex-col">

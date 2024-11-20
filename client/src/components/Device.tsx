@@ -23,7 +23,7 @@ export const Device = ({
     <div className="flex h-fit w-fit flex-col border rounded-xl p-2">
       <img
         src={DeviceImg}
-        className="rounded-lg border object-cover max-w-[250px] w-full h-[250px]"
+        className="rounded-lg border object-contain max-w-[250px] w-full h-[250px]"
         alt=""
       />
       <div className="my-2">
