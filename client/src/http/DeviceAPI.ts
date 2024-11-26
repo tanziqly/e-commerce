@@ -46,3 +46,13 @@ export const fetchOneDevice = async (id: number) => {
   const { data } = await $host.get(`api/device/${id}`);
   return data;
 };
+
+export const addDeviceToCart = async (id: number) => {
+  const { data } = await $authHost.post(`api/basket/${id}`);
+  return data;
+};
+
+export const fetchCart = async () => {
+  const { data } = await $authHost.get(`api/basket`);
+  return data;
+};

@@ -3,6 +3,7 @@ import {
   LOGIN_ROUTE,
   ADMIN_ROUTE,
   REGISTRATION_ROUTE,
+  BASKET_ROUTE,
 } from "@/lib/constants";
 
 import { useContext } from "react";
@@ -12,6 +13,7 @@ import { Context } from "@/main";
 import { observer } from "mobx-react-lite";
 
 import { Button, buttonVariants } from "./ui/button";
+import { ShoppingCart } from "lucide-react";
 
 export const Header = observer(() => {
   const { user } = useContext(Context);
@@ -32,6 +34,13 @@ export const Header = observer(() => {
         <div className="flex gap-2">
           {user.isAuth ? (
             <>
+              <Button
+                size={"icon"}
+                variant="outline"
+                onClick={() => navigate(BASKET_ROUTE)}
+              >
+                <ShoppingCart />
+              </Button>
               <Button variant="outline" onClick={() => navigate(ADMIN_ROUTE)}>
                 I'm Admin
               </Button>

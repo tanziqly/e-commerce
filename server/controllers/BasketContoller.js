@@ -1,6 +1,7 @@
 const { Basket } = require("../models/models");
 const ApiError = require("../error/apiError");
 const { BasketDevice } = require("../models/models");
+const { Device } = require("../models/models");
 
 class BasketController {
   async addDevice(req, res, next) {
@@ -15,13 +16,24 @@ class BasketController {
         basketId: basket.id,
         deviceId,
       });
-      return res.json(basketDevice);
+
+      const device = await Device.findByPk(deviceId);
+      if (!device) {
+        return next(ApiError.badRequest("Устройство не найдено!"));
+      }
+
+      return res.json({
+        id: basketDevice.id,
+        name: device.name,
+        price: device.price,
+        img: device.img,
+      });
     } catch (e) {
       next(ApiError.badRequest(e.message));
     }
   }
 
-  async getBasket(req, res) {
+  async getBasket(req, res, next) {
     try {
       const userId = req.user.id;
       const basket = await Basket.findOne({ where: { userId } });
@@ -31,7 +43,20 @@ class BasketController {
       const basketDevices = await BasketDevice.findAll({
         where: { basketId: basket.id },
       });
-      return res.json(basketDevices);
+
+      const devicesWithDetails = await Promise.all(
+        basketDevices.map(async (basketDevice) => {
+          const device = await Device.findByPk(basketDevice.deviceId);
+          return {
+            id: basketDevice.id,
+            name: device ? device.name : null,
+            price: device ? device.price : null,
+            img: device ? device.img : null,
+          };
+        })
+      );
+
+      return res.json(devicesWithDetails);
     } catch (e) {
       next(ApiError.badRequest(e.message));
     }
