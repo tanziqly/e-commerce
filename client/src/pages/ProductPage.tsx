@@ -6,6 +6,7 @@ import { Button, buttonVariants } from "@/components/ui/button";
 import { fetchOneDevice } from "@/http/DeviceAPI";
 import { HOME_ROUTE } from "@/lib/constants";
 import { ShoppingCart } from "lucide-react";
+import { observer } from "mobx-react-lite";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
@@ -32,7 +33,6 @@ interface Device {
 }
 
 export const ProductPage = () => {
-  // const { device } = useContext(Context);
   const [device, setDevice] = useState<Device>({ info: [] });
 
   const params = useParams();

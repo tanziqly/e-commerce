@@ -1,8 +1,8 @@
 import { Button } from "./ui/button";
 import { ShoppingCart, Trash2 } from "lucide-react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { PRODUCT_ROUTE } from "@/lib/constants";
-import { addDeviceToCart } from "@/http/DeviceAPI";
+import { addDeviceToCart, DeleteDeviceFromCart } from "@/http/DeviceAPI";
 interface DeviceListProps {
   isBasket?: boolean;
   DeviceImg: string;
@@ -17,7 +17,8 @@ export const Device = ({
   DeviceName,
   DevicePrice,
   id,
-}: DeviceListProps) => {
+  basketDeviceId,
+}: DeviceListProps & { basketDeviceId?: number }) => {
   const navigate = useNavigate();
 
   const addToCart = async () => {
@@ -26,6 +27,15 @@ export const Device = ({
       console.log(data);
     } catch (error) {
       console.error("Failed to add device to cart:", error);
+    }
+  };
+
+  const removeFromCart = async () => {
+    try {
+      const data = await DeleteDeviceFromCart(Number(basketDeviceId));
+      console.log(data);
+    } catch (error) {
+      console.error("Failed to remove device from Cart:", error);
     }
   };
 
@@ -52,7 +62,7 @@ export const Device = ({
             <ShoppingCart />
           </Button>
         ) : (
-          <Button size="icon" variant="destructive">
+          <Button onClick={removeFromCart} size="icon" variant="destructive">
             <Trash2 />
           </Button>
         )}

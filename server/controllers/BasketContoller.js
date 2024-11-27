@@ -49,6 +49,7 @@ class BasketController {
           const device = await Device.findByPk(basketDevice.deviceId);
           return {
             id: basketDevice.id,
+            idMore: device.id,
             name: device ? device.name : null,
             price: device ? device.price : null,
             img: device ? device.img : null,
@@ -64,7 +65,7 @@ class BasketController {
 
   async deleteDevice(req, res, next) {
     try {
-      const deviceId = req.params.id;
+      const basketDeviceId = req.params.id;
       const userId = req.user.id;
       const basket = await Basket.findOne({ where: { userId } });
       if (!basket) {
@@ -72,12 +73,11 @@ class BasketController {
       }
       const result = await BasketDevice.destroy({
         where: {
-          basketId: basket.id,
-          deviceId,
+          id: basketDeviceId,
         },
       });
       if (result === 0) {
-        return next(ApiError.badRequest("Товар не найден!"));
+        return next(ApiError.badRequest("Товар не найден в корзине!"));
       }
       return res.json({ message: "Товар успешно удален!" });
     } catch (e) {

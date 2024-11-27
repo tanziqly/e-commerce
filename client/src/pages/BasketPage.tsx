@@ -3,20 +3,27 @@ import { Button } from "@/components/ui/button";
 import { fetchCart } from "@/http/DeviceAPI";
 import { Context } from "@/main";
 import { observer } from "mobx-react-lite";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 
 export const BasketPage = observer(() => {
-  const { device } = useContext(Context);
+  const [quantity, setQuantity] = useState(0);
+  const [price, setPrice] = useState(0);
 
-  const showCart = () => {
-    console.log(fetchCart());
-  };
+  const { device } = useContext(Context);
 
   useEffect(() => {
     fetchCart().then((data) => {
+      setQuantity(data.length);
+      const sum = data.reduce((acc, item) => acc + item.price, 0);
+      setPrice(sum);
       device.setDevices(data);
     });
   }, []);
+
+  const showCart = () => {
+    console.log(fetchCart());
+    console.log(`Sum: ${price}, Quantity: ${quantity}`);
+  };
 
   return (
     <div className="flex basket:flex-row basket:items-start items-center flex-col-reverse gap-4 w-full">
@@ -28,7 +35,8 @@ export const BasketPage = observer(() => {
               DeviceImg={import.meta.env.VITE_API_URL + device.img}
               DeviceName={device.name}
               DevicePrice={device.price}
-              id={device.id}
+              id={device.idMore}
+              basketDeviceId={device.id}
               isBasket
             />
           ))}
@@ -39,11 +47,11 @@ export const BasketPage = observer(() => {
         <ul className="flex flex-col gap-1">
           <li className="flex justify-between">
             <h3 className="text-neutral-500">Summary:</h3>
-            <p>Rub</p>
+            <p>{price} Rub</p>
           </li>
           <li className="flex justify-between">
             <h3 className="text-neutral-500">Quantity:</h3>
-            <p>9</p>
+            <p>{quantity}</p>
           </li>
         </ul>
         <Button onClick={showCart} className="w-full mt-4" variant="default">

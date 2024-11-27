@@ -56,3 +56,8 @@ export const fetchCart = async () => {
   const { data } = await $authHost.get(`api/basket`);
   return data;
 };
+
+export const DeleteDeviceFromCart = async (id: number) => {
+  const { data } = await $authHost.delete(`api/basket/${id}`);
+  return data;
+};
